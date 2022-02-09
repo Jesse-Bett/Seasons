@@ -1,28 +1,27 @@
 import React from 'react';
 import ReactDom from 'react-dom';
+import SeasonDisplay from './SeasonDisplay';
+import "semantic-ui-css/semantic.min.css";
 
 class App extends React.Component{
 
-    constructor(props) {
-        super(props);
+    // constructor(props) {
+    //     super(props);
+    //     this.state = {lat:null,
+    //                   errorMessage:'',
+    //                   errorCode:null
+    //                 };
+    //   }
 
-        this.state = {lat:null,
-                      errorMessage:'',
-                      errorCode:null
-                    };
+     state = {lat:null,errorMessage:'',errorCode:null}; // A better way to write the above constructor function.
 
+     componentDidMount(){
         window.navigator.geolocation.getCurrentPosition(//using the geolocation API
-            (position)=>{
-                this.setState({lat:position.coords.latitude});
-                
-            },
-
-            (err)=> this.setState({errorMessage:err.message,errorCode:err.code})  //console.log(err)
-           
+            position => this.setState({lat:position.coords.latitude}),
+            
+            err => this.setState({errorMessage:err.message,errorCode:err.code})  //console.log(err)         
         )
-
-      }
-
+     }
 
     render(){
         if (this.state.errorMessage && !this.state.lat){
@@ -34,9 +33,7 @@ class App extends React.Component{
 
 
         else if( !this.state.errorMessage && this.state.lat ){
-            return <div>
-                         <h1>Latitude:{this.state.lat}</h1>
-                   </div> 
+            return <SeasonDisplay lat = {this.state.lat}/>
         }
 
 
