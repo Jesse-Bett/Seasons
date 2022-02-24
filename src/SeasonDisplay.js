@@ -8,8 +8,8 @@ const seasonConfig = {
   },
 
   winter: {
-    seasonText: "Let's hit the beach",
-    iconName: "sun",
+    seasonText: "It's very chilly",
+    iconName: "snowflake",
   }
 };
 
