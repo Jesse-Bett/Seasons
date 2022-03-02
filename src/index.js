@@ -6,14 +6,6 @@ import Spinner from './Spinner';
 
 class App extends React.Component{
 
-    // constructor(props) {
-    //     super(props);
-    //     this.state = {lat:null,
-    //                   errorMessage:'',
-    //                   errorCode:null
-    //                 };
-    //   }
-
      state = {lat:null,errorMessage:'',errorCode:null}; // A better way to write the above constructor function.
 
      componentDidMount(){
@@ -24,7 +16,7 @@ class App extends React.Component{
         )
      }
 
-    render(){
+    renderContent(){
         if (this.state.errorMessage && !this.state.lat){
             return <div> 
                          <h1>Error:{this.state.errorMessage}</h1>
@@ -32,15 +24,21 @@ class App extends React.Component{
                   </div>
         }
 
-
         else if( !this.state.errorMessage && this.state.lat ){
             return <SeasonDisplay lat = {this.state.lat}/>
         }
 
-
         else {
-            return <Spinner/>
+            return <Spinner message = 'Please accept location request'/>
         }
+    }
+
+    render(){
+       return(
+           <div className='border red'>
+               {this.renderContent()}
+           </div>
+       )
 
     };
 };
