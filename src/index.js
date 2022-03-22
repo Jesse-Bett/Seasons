@@ -9,10 +9,10 @@ class App extends React.Component{
      state = {lat:null,errorMessage:'',errorCode:null}; // A better way to write the above constructor function.
 
      componentDidMount(){
-        window.navigator.geolocation.getCurrentPosition(//using the geolocation API
+        window.navigator.geolocation.getCurrentPosition( //using the geolocation API
             position => this.setState({lat:position.coords.latitude}),
             
-            err => this.setState({errorMessage:err.message,errorCode:err.code})  //console.log(err)         
+            err => this.setState({errorMessage:err.message,errorCode:err.code})        
         )
      }
 
